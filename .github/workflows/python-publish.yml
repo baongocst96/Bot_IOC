@@ -1,0 +1,24 @@
+name: Telegram Reminder
+
+on:
+  schedule:
+    - cron: '0 0 * * *'
+
+jobs:
+  run-bot:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install packages
+        run: pip install pandas requests
+
+      - name: Run bot
+        run: python ioc/bot.py
